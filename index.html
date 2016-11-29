@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>o2 Tile WMS</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v3.19.1/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v3.19.1/build/ol.js"></script>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+    <script>
+      var layers = [
+        new ol.layer.Tile({
+          source: new ol.source.TileWMS({
+            url: 'http://localhost:8080/wms',
+            params: {'LAYERS': 'o2-basemap-basic', 'TILED': true},
+          })
+        }),
+      ];
+      var map = new ol.Map({
+        layers: layers,
+        target: 'map',
+        view: new ol.View({
+          //projection: 'EPSG:4326',
+          //center: [0, 0],
+          center: [-10997148, 4569099],
+          zoom: 1
+        })
+      });
+    </script>
+  </body>
+</html>
